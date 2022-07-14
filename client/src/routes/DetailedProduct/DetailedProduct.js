@@ -1,0 +1,152 @@
+import { useLocation } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
+import Navigationbar from '../../components/NavigationBar/Navigationbar';
+import Footer from '../../components/Footer/Footer';
+import { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import { ADD_REVIEW_MUTATION, GET_DISC_REVIEWS } from '../../queries/ReviewQueries';
+import { GET_USER } from '../../queries/UserQueries';
+import { GET_ONE_DISC } from '../../queries/DiscQueries';
+import ('./DetailedProduct.css');
+
+
+
+function DetailedProduct() {
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("");
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState("");
+  const [userId, setUserId] = useState("");
+  const [reviewsList, setReviewsList] = useState([]);
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [addReview] = useMutation(ADD_REVIEW_MUTATION, {onCompleted: (data) => console.log(data)})
+
+  const handleReviewSubmit = (e) => {
+    // e.preventDefault();    
+    addReview({
+        variables: {
+          user: userId,
+          disc: data.disc.id,
+          title, 
+          comment, 
+          rating: Number(rating) 
+        }
+    });
+
+    window.location = '/product-detail/:id';
+  }
+
+    const location = useLocation();
+    const state = location.state.disc.id
+
+    const { loading, data } = useQuery(GET_ONE_DISC, {
+      variables: {
+        id: state
+      } 
+    })
+
+    useQuery(GET_USER, {
+      onCompleted: (userData) => {
+        if(userData.user) {
+          setUserId(userData.user.id);
+        }
+        return null
+      }
+    });
+
+    const discReviews = useQuery(GET_DISC_REVIEWS, {
+      variables: {
+        discId: state
+      }, onCompleted: (discReviews) => {
+        setReviewsList(discReviews.reviews)
+      }
+    })
+
+
+  if(!loading) {
+    return (
+      <div>
+        <Navigationbar />
+
+        <div className="content-container">
+          <div className="image-container">
+            <img
+              className="detailed-disc-image"
+              src={require(`../../images/${data.disc.image}`)}
+              alt="disc"
+            />
+          </div>
+          <div className="disc-info-container">
+            <h1>
+              {data.disc.manufacture} {data.disc.name}
+            </h1>
+            <h2>{data.disc.category}</h2>
+            <p>Plastic Type: {data.disc.plasticType}</p>
+            <p>
+              Speed:{data.disc.speed} Glide:{data.disc.glide} Turn:
+              {data.disc.turn} Fade:{data.disc.fade}{" "}
+            </p>
+          </div>
+          <hr />
+        </div>
+
+        <div className="reviews-container">
+          <h2>Reviews</h2> 
+
+          { reviewsList.map((review, index) => 
+            <div className='reviews-list'>
+              <p><strong>{review.user.userName}</strong></p>
+              <Rating name="read-only" value={review.rating} readOnly />
+              <p className='review-title'>{review.title}</p>
+              <p>{review.comment}</p>
+            </div>
+          )}
+
+          <button className='review-button' onClick={handleShow}>
+            Leave A Review
+          </button>
+
+          <Modal contentClassName="my-modal"
+            show={show} onHide={handleClose}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Create Your Review
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <input type="text" className='review-input' title="title" placeholder="Title" onChange={(e) => setTitle(e.target.value)}/><br/>
+                <textarea className='review-input-textarea' title="comment" placeholder="Enter your review here..." onChange={(e) => setComment(e.target.value)}></textarea><br/>
+                <Typography component="legend">Rating</Typography>
+                <Rating
+                  name="simple-controlled"
+                  onChange={(e) => {setRating(e.target.value)}}
+                /> <br/>
+                <Button onClick={handleReviewSubmit} >Submit</Button>
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={handleClose}>Cancel</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+
+        <div className="footer-placement">
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+}
+
+export default DetailedProduct

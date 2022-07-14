@@ -1,0 +1,31 @@
+.footer-container {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.social-icons-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.social-icon {
+    margin: 10px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.copyright-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

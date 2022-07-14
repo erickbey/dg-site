@@ -1,0 +1,53 @@
+import { gql } from '@apollo/client';
+
+const ADD_USER_MUTATION = gql`
+  mutation($name: String!, $userName: String!, $email: String!, $password: String!, $passwordConfirm: String!) {
+      addUser(input: {name: $name, userName: $userName, email: $email, password: $password, passwordConfirm: $passwordConfirm}) {
+        userErrors {
+          message
+        }
+        token
+      }
+    }
+  `
+
+const SIGN_IN_MUTATION = gql`
+  mutation($email: String!, $password: String!) {
+      signIn(input: {email: $email, password: $password}) {
+        userErrors {
+           message
+        }
+        token
+      }
+    }
+  `
+
+const GET_USER = gql`
+{
+    user {
+        id
+        name
+        userName
+        email
+        image
+        wishlist {
+          name
+          price
+        }
+        reviews {
+          title
+          comment
+          rating
+        }
+        orders {
+          items {
+            name
+            price
+          }
+          date
+        }
+    }
+}`
+
+
+export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER }

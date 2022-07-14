@@ -1,0 +1,53 @@
+.newsletter-centering-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsletter-container {
+    height: 300px;
+    text-align: center;
+}
+
+.newsletter-container h2 {
+    margin-top: 10px;
+}
+
+.email-input {
+    width: 300px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
+
+.email-input::placeholder {
+    text-align: center;
+}
+
+.subscribe-button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color,color,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 17px 48px;
+    color: #fff;
+    background-color: #8466B5;
+    height: 48px;
+    margin-bottom: 15px;
+}
+
+.subscribe-button:hover {
+    transform: scale(1.04);
+    background-color: #a686da;
+}
