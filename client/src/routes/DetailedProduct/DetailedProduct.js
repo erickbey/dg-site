@@ -65,6 +65,7 @@ function DetailedProduct() {
         discId: state
       }, onCompleted: (discReviews) => {
         setReviewsList(discReviews.reviews)
+        console.log(discReviews)
       }
     })
 
@@ -99,13 +100,16 @@ function DetailedProduct() {
         <div className="reviews-container">
           <h2>Reviews</h2> 
 
-          { reviewsList.map((review, index) => 
+          { reviewsList.map((review, index) =>
+            (review.disc.id === state) ?
             <div className='reviews-list'>
               <p><strong>{review.user.userName}</strong></p>
               <Rating name="read-only" value={review.rating} readOnly />
               <p className='review-title'>{review.title}</p>
               <p>{review.comment}</p>
             </div>
+            :
+             null
           )}
 
           <button className='review-button' onClick={handleShow}>

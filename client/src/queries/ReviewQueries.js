@@ -17,6 +17,9 @@ const GET_DISC_REVIEWS = gql`
             user {
                 userName
             }
+            disc {
+                id
+            }
             title
             comment
             rating
