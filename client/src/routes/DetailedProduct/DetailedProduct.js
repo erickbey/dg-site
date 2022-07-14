@@ -25,10 +25,11 @@ function DetailedProduct() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [addReview] = useMutation(ADD_REVIEW_MUTATION, {onCompleted: (data) => console.log(data)})
+  const [addReview] = useMutation(ADD_REVIEW_MUTATION,
+    {
+      refetchQueries: [{ query: GET_DISC_REVIEWS }]}, {onCompleted: (data) => console.log(data)})
 
-  const handleReviewSubmit = (e) => {
-    // e.preventDefault();    
+  const handleReviewSubmit = () => {    
     addReview({
         variables: {
           user: userId,
@@ -38,8 +39,7 @@ function DetailedProduct() {
           rating: Number(rating) 
         }
     });
-
-    window.location = '/product-detail/:id';
+    handleClose()
   }
 
     const location = useLocation();
