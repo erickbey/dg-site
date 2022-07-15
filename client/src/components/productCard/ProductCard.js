@@ -15,10 +15,10 @@ function ProductCard({ name, manufacture, price, image }) {
         <div className='product-content-container'>
           <h2 className='content-text'>{manufacture} {name}</h2>
           <h3 className='content-text-description'>${price}</h3>
-          {/* <div className='buttons-container'>
+          <div className='buttons-container'>
             <button type="submit" className='cart-button'><AddCircleOutlineOutlinedIcon /></button><br/>
             <button type="submit" className='wishlist-button'><FavoriteBorderOutlinedIcon /></button><br/>
-          </div> */}
+          </div>
         </div>
     </div>
   )

@@ -162,6 +162,8 @@ exports.Mutation = {
         };
     },
     deleteReview: async(parent, { input }, context) => {
+        const { id } = input
+        
         if(!id) {
             return {
                 userErrors: [{ message: "You must be logged in to make an order" }],
@@ -169,13 +171,14 @@ exports.Mutation = {
             };
         }
 
-        const { id } = input
-
         await Review.findByIdAndDelete(id);
 
         return {
             userErrors: [],
             status: "Success",
         };
+    },
+    addToWishlist : async(parent, { input }, context) => {
+        const { discId, name, manufacture, price} = input
     }
 }

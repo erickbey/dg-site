@@ -93,8 +93,12 @@ function DetailedProduct() {
               Speed:{data.disc.speed} Glide:{data.disc.glide} Turn:
               {data.disc.turn} Fade:{data.disc.fade}{" "}
             </p>
+            <div className='buttons-container'>
+              <button type="submit" className='cart-button'>Add to Cart</button><br/>
+              <button type="submit" className='wishlist-button'>Add to Wishlist</button><br/>
           </div>
-          <hr />
+          </div>
+          
         </div>
 
         <div className="reviews-container">

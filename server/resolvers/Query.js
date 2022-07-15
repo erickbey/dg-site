@@ -15,7 +15,7 @@ exports.Query = {
         return await User.findById(context.userId)
     },
     reviews: async (parent, {filter}, args, context) => {
-        return await Review.find()
+        return await Review.find({})
     },
     orders: async (parent, args, context) => {
         return await Orders.find({})

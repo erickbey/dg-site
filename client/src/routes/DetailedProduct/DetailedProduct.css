@@ -42,7 +42,7 @@
     font-size: 1.3rem;
 }
 
-.review-button {
+.review-button, .cart-button, .wishlist-button {
     display: inline-block;
     outline: none;
     cursor: pointer;
@@ -88,7 +88,7 @@
 
 .footer-placement {
     width: 100%;
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
 }
