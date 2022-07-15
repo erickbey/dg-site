@@ -46,25 +46,25 @@ exports.Mutation = {
                 userErrors: [{ message: 'Please provide a valid email'}],
                 token: null
             };
-        }
+        };
 
         const isValidPassword = validator.isLength(password, {
             min:7
-        })
+        });
 
         if(!isValidPassword) {
             return {
                 userErrors: [{ message: 'Please provide a valid password'}],
                 token: null
             };
-        }
+        };
 
         if(password !== passwordConfirm) {
             return {
                 userErrors: [{ message: 'Passwords do not match'}],
                 token: null
             };
-        }
+        };
 
         hashedPassword = await bcrypt.hash(password, 12);
 
@@ -78,7 +78,7 @@ exports.Mutation = {
 
         await newUser.save();
 
-        const token = JWT.sign({ newUserId: newUser._id }, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN}) 
+        const token = JWT.sign({ newUserId: newUser._id }, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN});
 
         return {
             userErrors: [],
@@ -95,7 +95,7 @@ exports.Mutation = {
                 userErrors: [{ message: 'Please provide a valid username and password'}],
                 token: null
             };
-        }
+        };
 
         const isMatch = await bcrypt.compare(password, user.password);
 
@@ -104,14 +104,14 @@ exports.Mutation = {
                 userErrors: [{ message: "Invalid credentials" }],
                 token: null,
             };
-        }
+        };
 
-        const token = JWT.sign({ userId: user._id }, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN})
+        const token = JWT.sign({ userId: user._id }, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN});
 
         return {
             userErrors: [],
             token
-        }
+        };
     },
     addReview: async(parent, { input }, context) => {     
         const {user, disc, date, title, comment, rating} = input;
@@ -121,7 +121,7 @@ exports.Mutation = {
                 userErrors: [{ message: "You must be logged in to leave a review" }],
                 status: "Failed",
             };
-        }
+        };
 
         const newReview = new Review({
             user,
@@ -129,14 +129,19 @@ exports.Mutation = {
             title, 
             comment, 
             rating        
-        })
+        });
 
         await newReview.save();
+
+        await User.findByIdAndUpdate(context.userId, {
+            $push: {reviews: newReview.id},
+            safe: true, upsert: true, new : true,
+        })
 
         return {
             userErrors: [],
             status: "Success",
-        };;
+        };
     },
     addOrder: async(parent, { input }, { id }) => {
         if(!id) {
@@ -144,7 +149,7 @@ exports.Mutation = {
                 userErrors: [{ message: "You must be logged in to make an order" }],
                 status: "Failed",
             };
-        }
+        };
 
         const {user, items, date} = input;
 
@@ -152,7 +157,7 @@ exports.Mutation = {
             user,
             items,
             date
-        })
+        });
 
         await newOrder.save();
 
@@ -162,7 +167,7 @@ exports.Mutation = {
         };
     },
     deleteReview: async(parent, { input }, context) => {
-        const { id } = input
+        const { id } = input;
         
         if(!id) {
             return {
@@ -179,6 +184,29 @@ exports.Mutation = {
         };
     },
     addToWishlist : async(parent, { input }, context) => {
-        const { discId, name, manufacture, price} = input
+        const { id } = input;
+        currentUser = await User.findById(context.userId);
+
+        if(!id) {
+            return {
+                userErrors: [{ message: "An error occured while adding item to your wishlist" }],
+                status: "failed",
+            };
+        };
+
+        if(!context.userId) {
+            return {
+                userErrors: [{ message: "You must be logged in to make an order" }],
+                status: "failed",
+            };
+        }
+
+        currentUser.wishlist.push(id);
+        currentUser.save();
+
+        return {
+            userErrors: [],
+            status: "Success",
+        };
     }
 }

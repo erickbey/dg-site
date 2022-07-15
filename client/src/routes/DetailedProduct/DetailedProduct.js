@@ -65,7 +65,6 @@ function DetailedProduct() {
         discId: state
       }, onCompleted: (discReviews) => {
         setReviewsList(discReviews.reviews)
-        console.log(discReviews)
       }
     })
 
