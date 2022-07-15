@@ -40,6 +40,13 @@ exports.Mutation = {
     addUser: async(parent, { input }, context) => {
         const {name, userName, email, password, passwordConfirm} = input;
 
+        if(!name || !userName) {
+            return {
+                userErrors: [{ message: 'Please provide a name and username'}],
+                token: null
+            };
+        };
+
         const isEmail = validator.isEmail(email);
         if(!isEmail) {
             return {
@@ -54,7 +61,7 @@ exports.Mutation = {
 
         if(!isValidPassword) {
             return {
-                userErrors: [{ message: 'Please provide a valid password'}],
+                userErrors: [{ message: 'Please provide a valid password (Must be at least 8 characters)'}],
                 token: null
             };
         };

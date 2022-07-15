@@ -43,6 +43,10 @@ function DetailedProduct() {
     })
   }
 
+  const handleAddToCart = () => {
+    
+  }
+
   const handleReviewSubmit = () => {    
     addReview({
         variables: {

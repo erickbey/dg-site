@@ -33,7 +33,7 @@ function Products() {
       <div className='products-centering-container'>
         <div className='products-container'>
         { discList.map((disc, index) => 
-            <Link to={'/product-detail/:id'} state={{disc: disc}} style={{  color: 'inherit', textDecoration: 'inherit'}}><ProductCard key={disc.id} name={disc.name} manufacture={disc.manufacture} price={disc.price} image={disc.image} /></Link>
+            <Link to={'/product-detail/:id'} state={{disc: disc}} style={{  color: 'inherit', textDecoration: 'inherit'}}><ProductCard id={disc.id} name={disc.name} manufacture={disc.manufacture} price={disc.price} image={disc.image} /></Link>
           )}
         </div>
       </div>

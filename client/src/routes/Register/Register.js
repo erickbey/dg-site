@@ -3,6 +3,7 @@ import Navigationbar from '../../components/NavigationBar/Navigationbar';
 import './Register.css';
 import { ADD_USER_MUTATION } from '../../queries/UserQueries';
 import { useMutation } from '@apollo/client';
+import SuccessMessage from '../../components/SuccessMessage/SuccessMessage';
 
 function Register() {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false)
 
   const [addUser, { data }] = useMutation(ADD_USER_MUTATION)
 
@@ -25,18 +27,22 @@ function Register() {
             passwordConfirm
           }
     });
+    
 }
 
   useEffect(() => {
     if(data){
       if(data.addUser.userErrors.length) {
-        setError(data.addUser.userErrors[0].message)
-        console.log(error)
-      }
+        setError(data.addUser.userErrors[0].message);
+        console.log(error);
+      };
       if(data.addUser.token){
-        localStorage.setItem("token", data.addUser.token)
-        window.location = '/login';
-      }
+        localStorage.setItem("token", data.addUser.token);
+        setSuccess(true);
+        setTimeout(() => {
+          window.location = '/login';
+        }, "1000");     
+      };
     }
   }, [data])
 
@@ -46,6 +52,7 @@ function Register() {
 
       <div className='centering-container'>
         <div className='register-container'>
+          {success ? <SuccessMessage /> : null}
             <h2>Create your account</h2>
             <form onSubmit={handleSubmit}>
             {error && <p style={{color:"red", fontWeight:600}}>{error}</p>}
