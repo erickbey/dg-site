@@ -16,7 +16,7 @@ exports.typeDefs = gql`
         addReview(input: AddReviewInput): MutationPayload!
         addOrder(input: AddOrderInput): MutationPayload!
         deleteReview(id: ID!): MutationPayload!
-        addToWishlist(id: ID!): MutationPayload!
+        addToWishlist(input: ID!): MutationPayload!
      }
 
     type Disc {

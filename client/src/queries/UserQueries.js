@@ -49,5 +49,15 @@ const GET_USER = gql`
     }
 }`
 
+const ADD_TO_WISHLIST_MUTATION = gql `
+  mutation($discId: ID!) {
+    addToWishlist(input: {discId: $discId}) {
+          userErrors {
+            message
+          }
+          status
+      }
+}`
 
-export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER }
+
+export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER, ADD_TO_WISHLIST_MUTATION }

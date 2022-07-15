@@ -7,7 +7,7 @@ import { Button, Modal } from 'react-bootstrap';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { ADD_REVIEW_MUTATION, GET_DISC_REVIEWS } from '../../queries/ReviewQueries';
-import { GET_USER } from '../../queries/UserQueries';
+import { ADD_TO_WISHLIST_MUTATION, GET_USER } from '../../queries/UserQueries';
 import { GET_ONE_DISC } from '../../queries/DiscQueries';
 import ('./DetailedProduct.css');
 
@@ -20,14 +20,28 @@ function DetailedProduct() {
   const [rating, setRating] = useState("");
   const [userId, setUserId] = useState("");
   const [reviewsList, setReviewsList] = useState([]);
-
+  
+  const location = useLocation();
+  const state = location.state.disc.id
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [addReview] = useMutation(ADD_REVIEW_MUTATION,
-    {
-      refetchQueries: [{ query: GET_DISC_REVIEWS }]}, {onCompleted: (data) => console.log(data)})
+  const [addReview] = useMutation(ADD_REVIEW_MUTATION, {
+      refetchQueries: [{ query: GET_DISC_REVIEWS }]}, {onCompleted: (data) => console.log(data)
+    })
+    
+  const [addToWishlist] = useMutation(ADD_TO_WISHLIST_MUTATION, {
+    onCompleted: (data) => console.log(data)
+  })
+
+  const handleAddToWishlist = () => {
+    addToWishlist({
+      variables: {
+        discId: state
+      }
+    })
+  }
 
   const handleReviewSubmit = () => {    
     addReview({
@@ -41,9 +55,6 @@ function DetailedProduct() {
     });
     handleClose()
   }
-
-    const location = useLocation();
-    const state = location.state.disc.id
 
     const { loading, data } = useQuery(GET_ONE_DISC, {
       variables: {
@@ -94,7 +105,7 @@ function DetailedProduct() {
             </p>
             <div className='buttons-container'>
               <button type="submit" className='cart-button'>Add to Cart</button><br/>
-              <button type="submit" className='wishlist-button'>Add to Wishlist</button><br/>
+              <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button><br/>
           </div>
           </div>
           

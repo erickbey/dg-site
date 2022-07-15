@@ -184,8 +184,7 @@ exports.Mutation = {
         };
     },
     addToWishlist : async(parent, { input }, context) => {
-        const { id } = input;
-        currentUser = await User.findById(context.userId);
+        const id = input;
 
         if(!id) {
             return {
@@ -200,9 +199,11 @@ exports.Mutation = {
                 status: "failed",
             };
         }
-
-        currentUser.wishlist.push(id);
-        currentUser.save();
+        
+        await User.findByIdAndUpdate(context.userId, {
+            $push: {wishlist: id},
+            safe: true, upsert: true, new : true,
+        })
 
         return {
             userErrors: [],
