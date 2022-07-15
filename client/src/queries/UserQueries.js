@@ -50,13 +50,13 @@ const GET_USER = gql`
 }`
 
 const ADD_TO_WISHLIST_MUTATION = gql `
-  mutation($discId: ID!) {
-    addToWishlist(input: {discId: $discId}) {
-          userErrors {
-            message
-          }
-          status
+  mutation($input: ID!){
+    addToWishlist(input: $input) {
+      userErrors {
+        message
       }
+      status
+    }
 }`
 
 

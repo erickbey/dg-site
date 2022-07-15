@@ -38,7 +38,7 @@ function DetailedProduct() {
   const handleAddToWishlist = () => {
     addToWishlist({
       variables: {
-        discId: state
+        input: state
       }
     })
   }
