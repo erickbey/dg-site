@@ -10,6 +10,9 @@ exports.User = {
         return await Review.find({ _id: { $in: reviews } })
     },
     orders: async({ orders }, args, context) => {
+        if(!orders.length) {
+            return null
+        }
         return await Order.findById({ _id: { $in: orders } })
     }
 }

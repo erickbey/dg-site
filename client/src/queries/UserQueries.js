@@ -35,12 +35,14 @@ const GET_USER = gql`
           comment
           rating
         }
+        wishlist {
+          name
+        }
         orders {
           items {
             name
             price
           }
-          date
         }
     }
 }`
