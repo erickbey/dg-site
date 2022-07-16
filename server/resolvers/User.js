@@ -1,13 +1,15 @@
 const Disc = require('../models/discModel');
+const Review = require('../models/reviewModel');
+const Order = require('../models/orderModel');
 
 exports.User = {
     wishlist: async({ wishlist }, args, context) => {
-        return await Disc.findById(wishlist)
+        return await Disc.find({ _id: { $in: wishlist } })
     },
     reviews: async({ reviews }, args, context) => {
-        return await Disc.findById(reviews)
+        return await Review.find({ _id: { $in: reviews } })
     },
     orders: async({ orders }, args, context) => {
-        return await Disc.findById(orders)
+        return await Order.findById({ _id: { $in: orders } })
     }
 }

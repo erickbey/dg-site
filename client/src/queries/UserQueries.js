@@ -30,10 +30,6 @@ const GET_USER = gql`
         userName
         email
         image
-        wishlist {
-          name
-          price
-        }
         reviews {
           title
           comment

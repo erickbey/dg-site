@@ -42,7 +42,11 @@ const userSchema = new mongoose.Schema({
     reviews: {
         type: [mongoose.Schema.ObjectId],
         ref: 'Review'
-    }
+    },
+    orders: {
+        type: [mongoose.Schema.ObjectId],
+        ref: 'Order'
+    },
 });
 
 module.exports = mongoose.model('User', userSchema);

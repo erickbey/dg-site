@@ -143,7 +143,7 @@ exports.Mutation = {
         await User.findByIdAndUpdate(context.userId, {
             $push: {reviews: newReview.id},
             safe: true, upsert: true, new : true,
-        })
+        });
 
         return {
             userErrors: [],

@@ -55,7 +55,7 @@ function Navigationbar() {
                           
                           : <div className='profile-settings-container'>
                               <Nav.Link href="/login">
-                                <p className='header-tex' variant="secondary">Login</p>
+                                <p className='header-text' variant="secondary">Login</p>
                               </Nav.Link>
                             </div>
                             }
