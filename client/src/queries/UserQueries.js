@@ -36,7 +36,9 @@ const GET_USER = gql`
           rating
         }
         wishlist {
+          id
           name
+          price
         }
         orders {
           items {

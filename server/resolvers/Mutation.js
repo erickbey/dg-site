@@ -5,7 +5,6 @@ const User = require('../models/userModel');
 
 const validator = require('validator');
 const bcrypt = require('bcrypt');
-const { UserInputError } = require('apollo-server-errors');
 const JWT = require("jsonwebtoken");
 const dotenv = require('dotenv');
 
@@ -178,7 +177,14 @@ exports.Mutation = {
         
         if(!id) {
             return {
-                userErrors: [{ message: "You must be logged in to make an order" }],
+                userErrors: [{ message: "An error occured while deleting your review" }],
+                status: "failed",
+            };
+        }
+
+        if(!context.userId) {
+            return {
+                userErrors: [{ message: "You must be logged in to make an review" }],
                 status: "failed",
             };
         }
@@ -224,5 +230,31 @@ exports.Mutation = {
             userErrors: [],
             status: "Success",
         };
-    }
+    },
+    deleteFromWishlist: async(parent, { input }, context) => {
+        console.log(input)
+        
+        if(!input) {
+            return {
+                userErrors: [{ message: "An error occured while removing the item from your wishlist" }],
+                status: "failed",
+            };
+        }
+
+        if(!context.userId) {
+            return {
+                userErrors: [{ message: "You must be logged in to add to your wishlist" }],
+                status: "failed",
+            };
+        }
+
+        await User.findByIdAndUpdate(context.userId, {
+            $pull: {wishlist: input},
+        })
+
+        return {
+            userErrors: [],
+            status: "Success",
+        };
+    },
 }

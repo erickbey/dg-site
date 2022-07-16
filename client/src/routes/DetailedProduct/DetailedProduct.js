@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Navigationbar from '../../components/NavigationBar/Navigationbar';
 import Footer from '../../components/Footer/Footer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
@@ -19,6 +19,7 @@ function DetailedProduct() {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState("");
   const [userId, setUserId] = useState("");
+  const [userWishlist, setUserWishlist] = useState([]);
   const [reviewsList, setReviewsList] = useState([]);
   
   const location = useLocation();
@@ -70,6 +71,7 @@ function DetailedProduct() {
       onCompleted: (userData) => {
         if(userData.user) {
           setUserId(userData.user.id);
+          setUserWishlist(userData.user.wishlist)
         }
         return null
       }
@@ -83,6 +85,12 @@ function DetailedProduct() {
       }
     })
 
+
+    const isWishlistActive = () => {if (userWishlist.some(e => e.id === state)) {
+      return true
+    }
+      return false
+  }
 
   if(!loading) {
     return (
@@ -109,7 +117,10 @@ function DetailedProduct() {
             </p>
             <div className='buttons-container'>
               <button type="submit" className='cart-button'>Add to Cart</button><br/>
-              <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button><br/>
+              {isWishlistActive() 
+                ? <button type="submit" className='wishlist-button' >Remove from Wishlist</button> 
+                : <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button>
+              }
           </div>
           </div>
           
