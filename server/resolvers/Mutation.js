@@ -192,6 +192,7 @@ exports.Mutation = {
     },
     addToWishlist : async(parent, { input }, context) => {
         const id = input;
+        const currentUser = await User.findByIdAndUpdate(context.userId);
 
         if(!id) {
             return {
@@ -203,6 +204,13 @@ exports.Mutation = {
         if(!context.userId) {
             return {
                 userErrors: [{ message: "You must be logged in to make an order" }],
+                status: "failed",
+            };
+        }
+
+        if(currentUser.wishlist.includes(id)) {
+            return {
+                userErrors: [{ message: "This item is already in your wishlist" }],
                 status: "failed",
             };
         }
