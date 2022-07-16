@@ -7,7 +7,7 @@ import { Button, Modal } from 'react-bootstrap';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { ADD_REVIEW_MUTATION, GET_DISC_REVIEWS } from '../../queries/ReviewQueries';
-import { ADD_TO_WISHLIST_MUTATION, GET_USER } from '../../queries/UserQueries';
+import { ADD_TO_WISHLIST_MUTATION, DELETE_FROM_WISHLIST_MUTATION, GET_USER } from '../../queries/UserQueries';
 import { GET_ONE_DISC } from '../../queries/DiscQueries';
 import ('./DetailedProduct.css');
 
@@ -36,6 +36,10 @@ function DetailedProduct() {
     onCompleted: (data) => console.log(data)
   })
 
+  const [deleteFromWishlist] = useMutation(DELETE_FROM_WISHLIST_MUTATION, {
+    onCompleted: (data) => console.log(data)
+  })
+
   const handleAddToWishlist = () => {
     addToWishlist({
       variables: {
@@ -44,8 +48,12 @@ function DetailedProduct() {
     })
   }
 
-  const handleAddToCart = () => {
-    
+  const handleRemoveFromWishlist = () => {
+    deleteFromWishlist({
+      variables: {
+        input: state
+      }
+    })
   }
 
   const handleReviewSubmit = () => {    
@@ -118,7 +126,7 @@ function DetailedProduct() {
             <div className='buttons-container'>
               <button type="submit" className='cart-button'>Add to Cart</button><br/>
               {isWishlistActive() 
-                ? <button type="submit" className='wishlist-button' >Remove from Wishlist</button> 
+                ? <button type="submit" className='wishlist-button' onClick={handleRemoveFromWishlist}>Remove from Wishlist</button> 
                 : <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button>
               }
           </div>

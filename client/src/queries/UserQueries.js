@@ -59,5 +59,15 @@ const ADD_TO_WISHLIST_MUTATION = gql `
     }
 }`
 
+const DELETE_FROM_WISHLIST_MUTATION = gql `
+  mutation($input: ID!){
+    deleteFromWishlist(input: $input) {
+      userErrors {
+        message
+      }
+      status
+    }
+}`
 
-export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER, ADD_TO_WISHLIST_MUTATION }
+
+export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER, ADD_TO_WISHLIST_MUTATION, DELETE_FROM_WISHLIST_MUTATION }
