@@ -1,12 +1,5 @@
 import React from 'react';
 import './ProductCard.css';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { ADD_TO_WISHLIST_MUTATION } from '../../queries/UserQueries';
-import { useMutation } from '@apollo/client';
-
 
 function ProductCard({ id, name, manufacture, price, image }) {
   return (

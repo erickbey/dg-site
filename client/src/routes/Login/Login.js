@@ -33,7 +33,7 @@ function Login() {
         window.location = '/';
       } 
     }
-  }, [data])
+  }, [data, error])
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-import {Navbar, Container, Nav, Button} from 'react-bootstrap';
+import {Navbar, Container, Nav} from 'react-bootstrap';
 import { GET_USER } from '../../queries/UserQueries';
 import logo from '../../images/logo(1).png';
 import './NavigationBar.css';
@@ -9,7 +9,7 @@ import './NavigationBar.css';
 function Navigationbar() {
   const [userName, setUserName] = useState("");
 
-  const { loading, data, error } = useQuery(GET_USER, {
+  useQuery(GET_USER, {
     onCompleted: (data) => {
       if(data.user !== null) {
         setUserName(data.user.userName);

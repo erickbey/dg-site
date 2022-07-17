@@ -232,8 +232,6 @@ exports.Mutation = {
         };
     },
     deleteFromWishlist: async(parent, { input }, context) => {
-        console.log(input)
-        
         if(!input) {
             return {
                 userErrors: [{ message: "An error occured while removing the item from your wishlist" }],
