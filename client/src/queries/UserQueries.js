@@ -24,29 +24,29 @@ const SIGN_IN_MUTATION = gql`
 
 const GET_USER = gql`
 {
-    user {
+  user {
+      id
+      name
+      userName
+      email
+      image
+      reviews {
+        title
+        comment
+        rating
+      }
+      wishlist {
         id
         name
-        userName
-        email
-        image
-        reviews {
-          title
-          comment
-          rating
-        }
-        wishlist {
-          id
+        price
+      }
+      orders {
+        items {
           name
           price
         }
-        orders {
-          items {
-            name
-            price
-          }
-        }
-    }
+      }
+  }
 }`
 
 const ADD_TO_WISHLIST_MUTATION = gql `

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
 import './Cart.css';
 import { useLocation } from 'react-router-dom';
 import Navigationbar from '../../components/NavigationBar/Navigationbar'
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { ADD_ORDER_MUTATION } from '../../queries/OrderQueries';
-import { GET_USER } from '../../queries/UserQueries';
+import { useEffect, useState } from 'react';
+
 
 function Cart() {
-  // const [userId, SetUserId] = useState("")
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+  const [cart, setCart] = useState(cartFromLocalStorage);
 
   const location = useLocation();
   const items = location.state.items;
@@ -15,17 +16,11 @@ function Cart() {
   let cartTotal = 0;
   let itemIds = [];
 
-  // useQuery(GET_USER, {
-  //   onCompleted: (data) => {
-  //     if(data.user !== null) {
-  //       SetUserId(data.user.id);
-  //     } else {
-  //       return null
-  //     }
-  //   }
-  // });
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }, [cart])
 
-  const [addOrder] = useMutation(ADD_ORDER_MUTATION, {onCompleted: (data) => console.log(data)});
+  const [addOrder, { data }] = useMutation(ADD_ORDER_MUTATION, {onCompleted: (data) => console.log(data)});
 
   const handleCheckout = () => {    
     addOrder({
@@ -33,10 +28,13 @@ function Cart() {
           items: itemIds
         }
     });
-  }
 
-  // console.log(userId)
-  console.log(itemIds)
+    if (data.addOrder.status === "Success") {
+      console.log(true)
+      localStorage.setItem("cart", [])
+      setCart([])
+    }
+  }
 
   return (
     <div>

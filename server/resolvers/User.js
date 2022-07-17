@@ -13,6 +13,6 @@ exports.User = {
         if(!orders.length) {
             return null
         }
-        return await Order.findById({ _id: { $in: orders } })
+        return await Order.find({ id: { $in: orders } })
     }
 }
