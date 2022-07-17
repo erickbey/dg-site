@@ -64,7 +64,6 @@ function DetailedProduct() {
   }
 
   const handleAddToCart = () => {
-    console.log(cart)
     setCart([...cart, data])
     localStorage.setItem("cart", JSON.stringify(cart))
   }

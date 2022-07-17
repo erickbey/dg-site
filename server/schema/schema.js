@@ -78,13 +78,10 @@ exports.typeDefs = gql`
         id: ID!
         user: User!
         items: [Disc!]!
-        date: String!
     }
 
     input AddOrderInput {
-        user: String!
-        items: [String!]!
-        date: String!
+        items: [String]
     }
 
     type Review {

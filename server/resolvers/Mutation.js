@@ -149,22 +149,29 @@ exports.Mutation = {
             status: "Success",
         };
     },
-    addOrder: async(parent, { input }, { id }) => {
-        if(!id) {
+    addOrder: async(parent, { input }, context) => {
+        const currentUser = await User.findByIdAndUpdate(context.userId);
+
+        if(!currentUser) {
             return {
                 userErrors: [{ message: "You must be logged in to make an order" }],
                 status: "Failed",
             };
         };
 
-        const {user, items} = input;
+        const { items } = input;
 
         const newOrder = new Order({
-            user,
+            user: currentUser,
             items
         });
 
         await newOrder.save();
+
+        await User.findByIdAndUpdate(context.userId, {
+            $push: {orders: newOrder.id},
+            safe: true, upsert: true, new : true,
+        });
 
         return {
             userErrors: [],
@@ -172,6 +179,7 @@ exports.Mutation = {
         };
     },
     deleteReview: async(parent, { input }, context) => {
+        const currentUser = await User.findByIdAndUpdate(context.userId);
         const { id } = input;
         
         if(!id) {
@@ -181,7 +189,7 @@ exports.Mutation = {
             };
         }
 
-        if(!context.userId) {
+        if(!currentUser) {
             return {
                 userErrors: [{ message: "You must be logged in to make an review" }],
                 status: "failed",
