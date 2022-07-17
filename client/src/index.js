@@ -48,7 +48,7 @@ root.render(
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/my-profile/:id" element={<MyProfile />} />
-        <Route path="/cart/:id" element={<Cart />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-disc" element={<AddDisc />} />
       </Routes>

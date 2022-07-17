@@ -60,7 +60,8 @@ function DetailedProduct() {
   }
 
   const handleAddToCart = () => {
-    setCart([...cart, state])
+    console.log(cart)
+    setCart([...cart, data])
     localStorage.setItem("cart", JSON.stringify(cart))
   }
 

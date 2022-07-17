@@ -4,10 +4,14 @@ import {Navbar, Container, Nav} from 'react-bootstrap';
 import { GET_USER } from '../../queries/UserQueries';
 import logo from '../../images/logo(1).png';
 import './NavigationBar.css';
+import { Link } from 'react-router-dom';
 
 
 function Navigationbar() {
   const [userName, setUserName] = useState("");
+
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+  const [cart, setCart] = useState(cartFromLocalStorage);
 
   useQuery(GET_USER, {
     onCompleted: (data) => {
@@ -48,9 +52,7 @@ function Navigationbar() {
                               <p className='header-text' variant="secondary" style={{ textDecoration: 'underline'}}>{userName}</p>
                             </Nav.Link>
                               <p className='header-text' variant="secondary" onClick={handleLogout}>Logout</p>
-                              <Nav.Link href="/cart">
-                                <p className='header-text' variant="secondary">Cart</p>
-                              </Nav.Link>
+                              <Link to={'/cart'} state={{items: cart}} ><p className='header-text' variant="secondary">Cart</p></Link>
                           </div>
                           
                           : <div className='profile-settings-container'>
