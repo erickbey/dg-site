@@ -157,12 +157,11 @@ exports.Mutation = {
             };
         };
 
-        const {user, items, date} = input;
+        const {user, items} = input;
 
         const newOrder = new Order({
             user,
-            items,
-            date
+            items
         });
 
         await newOrder.save();

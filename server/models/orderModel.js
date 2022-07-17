@@ -11,7 +11,8 @@ const orderSchema = new Schema({
         ref: 'Disc',
     }],
     date: {
-        type: Date
+        type: Date,
+        default: Date.now(),
     },
 });
 

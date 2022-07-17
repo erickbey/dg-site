@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Navigationbar from '../../components/NavigationBar/Navigationbar';
 import Footer from '../../components/Footer/Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
@@ -25,6 +25,10 @@ function DetailedProduct() {
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart, setCart] = useState(cartFromLocalStorage);
   
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }, [cart])
+
   const location = useLocation();
   const state = location.state.disc.id
 
