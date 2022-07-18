@@ -10,9 +10,6 @@ import { Link } from 'react-router-dom';
 function Navigationbar() {
   const [userName, setUserName] = useState("");
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
-  const [cart, setCart] = useState(cartFromLocalStorage);
-
   useQuery(GET_USER, {
     onCompleted: (data) => {
       if(data.user !== null) {
@@ -52,7 +49,9 @@ function Navigationbar() {
                               <p className='header-text' variant="secondary" style={{ textDecoration: 'underline'}}>{userName}</p>
                             </Nav.Link>
                               <p className='header-text' variant="secondary" onClick={handleLogout}>Logout</p>
-                              <Link to={'/cart'} state={{items: cart}} ><p className='header-text' variant="secondary">Cart</p></Link>
+                            <Nav.Link href="/cart">
+                              <p className='header-text' variant="secondary">Cart</p>
+                            </Nav.Link>
                           </div>
                           
                           : <div className='profile-settings-container'>

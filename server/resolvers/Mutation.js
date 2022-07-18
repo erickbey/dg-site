@@ -161,6 +161,13 @@ exports.Mutation = {
 
         const { items } = input;
 
+        if (!items.length) {
+            return {
+                userErrors: [{ message: "You have no items in your cart" }],
+                status: "Failed",
+            };
+        }
+
         const newOrder = new Order({
             user: currentUser,
             items

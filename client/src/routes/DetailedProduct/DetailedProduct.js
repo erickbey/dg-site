@@ -65,7 +65,7 @@ function DetailedProduct() {
 
   const handleAddToCart = () => {
     setCart([...cart, data])
-    localStorage.setItem("cart", JSON.stringify(cart))
+    // localStorage.setItem("cart", JSON.stringify(cart))
   }
 
   const handleReviewSubmit = () => {    

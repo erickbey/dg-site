@@ -1,3 +1,22 @@
+.centering-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.all-items-container {
+    height: 800px;
+    width: 700px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.item-container {
+    height: 150px;
+}
+
 .checkout-button {
     display: inline-block;
     outline: none;
@@ -24,4 +43,10 @@
 .checkout-button:hover {
     transform: scale(1.04);
     background-color: #a686da;
+}
+
+.cart-disc-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
 }
