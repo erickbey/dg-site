@@ -35,6 +35,8 @@ function MyInformation() {
 
   return (
     <div>
+      <Navigationbar />
+
       <div className='centering-div'>
         <div className='change-userInfo-container'>
             <h2>Change Your Personal Information</h2>

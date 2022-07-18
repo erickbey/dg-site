@@ -4,7 +4,8 @@ import {Navbar, Container, Nav} from 'react-bootstrap';
 import { GET_USER } from '../../queries/UserQueries';
 import logo from '../../images/logo(1).png';
 import './NavigationBar.css';
-import { Link } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 function Navigationbar() {
@@ -45,9 +46,13 @@ function Navigationbar() {
             </Nav>
             <Nav>
               {userName ? <div className='profile-settings-container'>
-                            <Nav.Link href="/my-profile/:id">
-                              <p className='header-text' variant="secondary" style={{ textDecoration: 'underline'}}>{userName}</p>
-                            </Nav.Link>
+                            <DropdownButton id="dropdown-basic-button" title={userName}>
+                                <Dropdown.Item href="/my-profile"><Nav.Link href="/my-profile">User Info</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href="/change-password">Change Password</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href="/my-reviews">My Reviews</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href="/my-orders">My Orders</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href="/my-wishlist">My Wishlist</Nav.Link></Dropdown.Item>
+                            </DropdownButton>
                               <p className='header-text' variant="secondary" onClick={handleLogout}>Logout</p>
                             <Nav.Link href="/cart">
                               <p className='header-text' variant="secondary">Cart</p>

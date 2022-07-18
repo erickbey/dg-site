@@ -9,12 +9,15 @@ import About from './routes/About/About';
 import Register from './routes/Register/Register';
 import Login from './routes/Login/Login';
 import AddDisc from './routes/AddDisc/AddDisc';
-import MyProfile from './routes/MyProfile/MyProfile';
 import Cart from './routes/Cart/Cart';
-
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
 import DetailedProduct from './routes/DetailedProduct/DetailedProduct';
+import MyInformation from './routes/MyProfile/MyInformation/MyInformation';
+import ChangePassword from './routes/MyProfile/ChangePassword/ChangePassword';
+import MyReviews from './routes/MyProfile/MyReviews/MyReviews';
+import MyOrders from './routes/MyProfile/MyOrders/MyOrders';
+import MyWishlist from './routes/MyProfile/MyWishlist/MyWishlist';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql'
@@ -47,7 +50,11 @@ root.render(
         <Route path="/product-detail/:id" element={<DetailedProduct />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/my-profile/:id" element={<MyProfile />} />
+        <Route path="/my-profile" element={<MyInformation />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/my-reviews" element={<MyReviews />} />
+        <Route path="/my-orders" element={<MyOrders />} />
+        <Route path="/my-wishlist" element={<MyWishlist />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-disc" element={<AddDisc />} />

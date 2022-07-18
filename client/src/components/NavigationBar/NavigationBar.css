@@ -5,7 +5,7 @@
     height: 100%;
 }
 
-.header-button {
+.header-button, #dropdown-basic-button {
     display: inline-block;
     outline: none;
     cursor: pointer;
@@ -16,14 +16,16 @@
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 2px;
-    min-width: 60px;
+    min-width: 100px;
     text-transform: uppercase;
     white-space: normal;
     font-weight: 700;
     text-align: center;
-    padding: 5px 10px;
+    padding: 10px 20px;
+    color: #8466B5;
     background-color: #BCEDF6;
-    height: 30px;
+    height: 40px;
+    margin-bottom: 15px;
 }
 
 .logo-image {
@@ -42,4 +44,5 @@
     font-weight: 600;
     font-size: 1.2rem;
     cursor: pointer;
+    margin-left: 10px;
 }

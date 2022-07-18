@@ -35,6 +35,8 @@ function ChangePassword() {
 
   return (
     <div>
+      <Navigationbar />
+
       <div className='centering-div'>
         <div className='change-password-container'>
             <h2>Change Your Password</h2>
