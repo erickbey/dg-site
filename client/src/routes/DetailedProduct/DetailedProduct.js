@@ -64,8 +64,14 @@ function DetailedProduct() {
   }
 
   const handleAddToCart = () => {
+    console.log("Item added to cart")
     setCart([...cart, data])
-    // localStorage.setItem("cart", JSON.stringify(cart))
+  }
+
+  const handleRemoveFromCart = () => {
+    console.log("Item removed from cart")
+    const newCart = cart.filter(item => item !== state)
+    setCart(newCart)
   }
 
   const handleReviewSubmit = () => {    
@@ -113,6 +119,15 @@ function DetailedProduct() {
         return false }
     }
 
+    const renderCartButton = () => cart.forEach(item => {
+      if (item.disc.id === state) {
+        console.log(true)
+        return true
+      } else {
+        return true
+      }
+    })
+
   if(!loading) {
     return (
       <div>
@@ -137,7 +152,12 @@ function DetailedProduct() {
               {data.disc.turn} Fade:{data.disc.fade}{" "}
             </p>
             <div className='buttons-container'>
-              <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button><br/>
+            {renderCartButton() 
+                ? <button type="submit" className='cart-button' onClick={handleRemoveFromCart}>Remove from Cart</button>
+                : <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button>
+              }
+              {/* {renderCartButton()}
+              <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button><br/> */}
               {isWishlistActive() 
                 ? <button type="submit" className='wishlist-button' onClick={handleRemoveFromWishlist}>Remove from Wishlist</button> 
                 : <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button>

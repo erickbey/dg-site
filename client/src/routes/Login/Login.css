@@ -55,12 +55,12 @@
     text-align: center;
     padding: 17px 48px;
     color: #fff;
-    background-color: #1ED760;
+    background-color: #8466B5;
     height: 48px;
     margin-bottom: 15px;
 }
 
 .login-button:hover, .register-button:hover {
     transform: scale(1.04);
-    background-color: #21e065;
+    background-color: #a686da;
 }

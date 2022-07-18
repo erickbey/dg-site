@@ -1,6 +1,6 @@
 import React from 'react';
 import './MyProfile.css';
-// import Navigationbar from '../../components/NavigationBar/Navigationbar';
+import Navigationbar from '../../components/NavigationBar/Navigationbar';
 import MyInformation from './MyInformation/MyInformation';
 import ChangePassword from './ChangePassword/ChangePassword';
 import MyOrders from './MyOrders/MyOrders';
@@ -21,9 +21,11 @@ function MyProfile() {
 
   return (
     <div>
-        {/* <Navigationbar /> */}
+        <Navigationbar />
+        
         <MyInformation />
 
+        {/* make a link to each of these and let them have there own page or just use modals */}
         <ChangePassword />
 
         <MyReviews />

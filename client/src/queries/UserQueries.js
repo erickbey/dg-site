@@ -69,5 +69,27 @@ const DELETE_FROM_WISHLIST_MUTATION = gql `
     }
 }`
 
+const CHANGE_PASSWORD_MUTATION = gql `
+  mutation($input: ID!){
+      deleteFromWishlist(input: $input) {
+        userErrors {
+          message
+        }
+        status
+      }
+  }
+`
 
-export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER, ADD_TO_WISHLIST_MUTATION, DELETE_FROM_WISHLIST_MUTATION }
+const CHANGE_USER_INFO_MUTATION = gql `
+  mutation($input: ID!){
+      deleteFromWishlist(input: $input) {
+        userErrors {
+          message
+        }
+        status
+      }
+  }
+`
+
+
+export { ADD_USER_MUTATION, SIGN_IN_MUTATION, GET_USER, ADD_TO_WISHLIST_MUTATION, DELETE_FROM_WISHLIST_MUTATION, CHANGE_PASSWORD_MUTATION, CHANGE_USER_INFO_MUTATION }
