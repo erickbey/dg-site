@@ -269,4 +269,77 @@ exports.Mutation = {
             status: "Success",
         };
     },
+    updateUser : async(parent, { input }, context) => {
+        const { name, userName, email } = input;
+
+        if(!context.userId) {
+            return {
+                userErrors: [{ message: "You must be logged in to make changes to user info" }],
+                status: "failed",
+            };
+        }
+        
+        await User.findByIdAndUpdate(context.userId, {
+            name,
+            userName,
+            email,
+            new : true,
+        })
+
+        return {
+            userErrors: [],
+            status: "Success",
+        };
+    },
+    changePassword : async(parent, { input }, context) => {
+        const { currentPassword, password, passwordConfirm } = input;
+        const user = await User.findById(context.userId).select('+password');
+
+        if(!context.userId) {
+            return {
+                userErrors: [{ message: "You must be logged in to change a users password" }],
+                status: "failed",
+            };
+        }
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+
+        if (!isMatch) {
+        return {
+                userErrors: [{ message: "Invalid credentials" }],
+                status: "Failed"
+            };
+        };
+
+        const isValidPassword = validator.isLength(password, {
+            min:7
+        });
+
+        if(!isValidPassword) {
+            return {
+                userErrors: [{ message: 'Please provide a valid password (Must be at least 8 characters)'}],
+                status: "Failed"
+            };
+        };
+
+        if(password !== passwordConfirm) {
+            return {
+                userErrors: [{ message: 'Passwords do not match'}],
+                status: "Failed"
+            };
+        };
+
+        hashedPassword = await bcrypt.hash(password, 12);
+        
+        await User.findByIdAndUpdate(context.userId, {
+            password: hashedPassword,
+            passwordConfirm: hashedPassword,
+            new : true,
+        })
+
+        return {
+            userErrors: [],
+            status: "Success",
+        };
+    },
 }

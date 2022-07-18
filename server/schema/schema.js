@@ -12,6 +12,8 @@ exports.typeDefs = gql`
      type Mutation {
         addDisc(input: AddDiscInput): MutationPayload!
         addUser(input: AdduserInput): AuthPayload!
+        updateUser(input: UpdateUserInput): MutationPayload!
+        changePassword(input: changePasswordInput): MutationPayload!
         signIn(input: CredentialsInput): AuthPayload!
         addReview(input: AddReviewInput): MutationPayload!
         addOrder(input: AddOrderInput): MutationPayload!
@@ -49,11 +51,6 @@ exports.typeDefs = gql`
         quantity: Int!
     }
 
-
-    input AddManufactureInput {
-        name: String!
-    }
-
     type User {
         id: ID!
         name: String!
@@ -70,6 +67,18 @@ exports.typeDefs = gql`
         name: String!
         userName: String!
         email: String!
+        password: String!
+        passwordConfirm: String!
+    }
+
+    input UpdateUserInput {
+        name: String!
+        userName: String!
+        email: String!
+    }
+
+    input changePasswordInput {
+        currentPassword: String!
         password: String!
         passwordConfirm: String!
     }

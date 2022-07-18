@@ -70,8 +70,8 @@ const DELETE_FROM_WISHLIST_MUTATION = gql `
 }`
 
 const CHANGE_PASSWORD_MUTATION = gql `
-  mutation($input: ID!){
-      deleteFromWishlist(input: $input) {
+  mutation($currentPassword: String!, $password: String!, $passwordConfirm: String!) {
+      changePassword (input: { currentPassword: $currentPassword, password: $password, passwordConfirm: $passwordConfirm}) {
         userErrors {
           message
         }
@@ -81,8 +81,8 @@ const CHANGE_PASSWORD_MUTATION = gql `
 `
 
 const CHANGE_USER_INFO_MUTATION = gql `
-  mutation($input: ID!){
-      deleteFromWishlist(input: $input) {
+  mutation($name: String!, $userName: String!, $email: String!) {
+      updateUser(input: {name: $name, userName: $userName, email: $email}) {
         userErrors {
           message
         }
