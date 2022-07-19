@@ -1,0 +1,9 @@
+.reviews-page-container {
+    text-align: center;
+}
+
+
+.review-container {
+    border: 2px solid black;
+    margin: 10px;
+}

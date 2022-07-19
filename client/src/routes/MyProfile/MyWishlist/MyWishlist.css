@@ -1,0 +1,25 @@
+.wishlist-page-container {
+    text-align: center;
+}
+
+.cetering-div {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container {
+    border-radius: 25px;
+    background-color: white;
+    padding: 50px;
+    text-align: center;
+    width: 600px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.wishlist-item-container {
+    border: 2px solid black;
+    margin: 10px;
+}

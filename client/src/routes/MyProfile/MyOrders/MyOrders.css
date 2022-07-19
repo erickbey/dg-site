@@ -1,0 +1,9 @@
+.orders-page-container {
+    text-align: center;
+}
+
+
+.order-container {
+    border: 2px solid black;
+    margin: 10px;
+}
