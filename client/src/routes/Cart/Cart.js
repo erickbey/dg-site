@@ -55,12 +55,12 @@ function Cart() {
     <div>
       <Navigationbar />
 
+      <h2>Items in Cart</h2>
       <div className='centering-div'>
         <div className='all-items-container'>
-          <h2>Items in Cart</h2>
           { cart.map((item, index) => 
             <div className='item-container'>
-              {item.disc.name}    ${item.disc.price}
+              <h2 className='disc-info'>{item.disc.name}    ${item.disc.price}</h2>
               <img
                   className="cart-disc-image"
                   src={require(`../../images/${item.disc.image}`)}
@@ -69,7 +69,7 @@ function Cart() {
                 <button type="submit" className='cart-button' onClick={() => handleRemoveFromCart(item.disc.id)}>Remove From Cart</button>
             </div>
           )}
-          Total: ${cartTotal}
+          <h3>Total: ${cartTotal}</h3>
           <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
         </div>
       </div>
