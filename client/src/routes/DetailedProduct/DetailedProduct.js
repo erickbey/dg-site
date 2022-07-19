@@ -68,11 +68,11 @@ function DetailedProduct() {
     setCart([...cart, data])
   }
 
-  const handleRemoveFromCart = () => {
-    console.log("Item removed from cart")
-    const newCart = cart.filter(item => item !== state)
-    setCart(newCart)
-  }
+  // const handleRemoveFromCart = () => {
+  //   console.log("Item removed from cart")
+  //   const newCart = cart.filter(item => item !== state)
+  //   setCart(newCart)
+  // }
 
   const handleReviewSubmit = () => {    
     addReview({
@@ -112,21 +112,13 @@ function DetailedProduct() {
     })
 
 
-    const isWishlistActive = () => {
-      if (userWishlist.some(e => e.id === state)) {
+    const renderWishlistButton = () => {
+      if (userWishlist.some(item => item.id === state)) {
         return true
       } else {
-        return false }
-    }
-
-    const renderCartButton = () => cart.forEach(item => {
-      if (item.disc.id === state) {
-        console.log(true)
-        return true
-      } else {
-        return true
+        return false 
       }
-    })
+    }
 
   if(!loading) {
     return (
@@ -152,13 +144,8 @@ function DetailedProduct() {
               {data.disc.turn} Fade:{data.disc.fade}{" "}
             </p>
             <div className='buttons-container'>
-            {renderCartButton() 
-                ? <button type="submit" className='cart-button' onClick={handleRemoveFromCart}>Remove from Cart</button>
-                : <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button>
-              }
-              {/* {renderCartButton()}
-              <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button><br/> */}
-              {isWishlistActive() 
+              <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button>
+              {renderWishlistButton() 
                 ? <button type="submit" className='wishlist-button' onClick={handleRemoveFromWishlist}>Remove from Wishlist</button> 
                 : <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button>
               }
