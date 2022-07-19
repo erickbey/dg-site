@@ -68,12 +68,6 @@ function DetailedProduct() {
     setCart([...cart, data])
   }
 
-  // const handleRemoveFromCart = () => {
-  //   console.log("Item removed from cart")
-  //   const newCart = cart.filter(item => item !== state)
-  //   setCart(newCart)
-  // }
-
   const handleReviewSubmit = () => {    
     addReview({
         variables: {

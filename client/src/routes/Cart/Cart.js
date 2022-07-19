@@ -14,6 +14,18 @@ function Cart() {
     JSON.parse(localStorage.getItem("cart") || "[]")
   }, [cart])
 
+  const handleRemoveFromCart = (itemId) => {
+    console.log("Item removed from cart")
+    const index = cart.findIndex(item => {
+      return item.disc.id === itemId
+    });
+    if (index > -1) { 
+      cart.splice(index, 1)
+    }
+    setCart(cart)
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }
+
   let cartTotal = 0;
   let itemIds = [];
   
@@ -54,6 +66,7 @@ function Cart() {
                   src={require(`../../images/${item.disc.image}`)}
                   alt="disc"
                 />
+                <button type="submit" className='cart-button' onClick={() => handleRemoveFromCart(item.disc.id)}>Remove From Cart</button>
             </div>
           )}
           Total: ${cartTotal}

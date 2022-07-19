@@ -14,7 +14,30 @@
 }
 
 .item-container {
-    height: 150px;
+    height: 300px;
+}
+
+.cart-button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color,color,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 17px 48px;
+    color: #fff;
+    background-color: #8466B5;
+    height: 48px;
+    margin-bottom: 15px;
 }
 
 .checkout-button {
