@@ -22,15 +22,15 @@ function MyReviews() {
   return (
     <div className='reviews-page-container'>
       <Navigationbar />
-      <h2>My Reviews</h2>
-
+    
       <div className='centering-div'>
           <div className='flex-container'>
+            <h2>My Reviews</h2>
             { userReviews.map((review, index) => 
                 <div className='review-container'>
-                  <p>Title: {review.title}</p>
-                  <p>Comment: {review.comment}</p>
-                  <p>Rating: {review.rating}</p>
+                  <p><span>Title:</span> {review.title}</p>
+                  <p><span>Comment:</span> {review.comment}</p>
+                  <p><span>Rating:</span> {review.rating}</p>
                 </div>
             )}
         </div>

@@ -20,13 +20,18 @@ function MyWishlist() {
     <div className='wishlist-page-container'>
       <Navigationbar />
       
-      <h2>My Wishlist</h2>
         <div className='centering-div'>
           <div className='flex-container'>
+            <h2>My Wishlist</h2>
             { userWishlist.map((item, index) => 
               <div className='wishlist-item-container'>
-                <p>Disc: {item.name}</p>
-                <p>Price: {item.price}</p>
+                <img
+                  className="cart-disc-image"
+                  src={require(`../../../images/${item.image}`)}
+                  alt="disc"
+                />
+                <p><span>{item.name}</span></p>
+                <p><span>${item.price}</span></p>
               </div>
             )}
           </div>

@@ -39,11 +39,13 @@ const GET_USER = gql`
         id
         name
         price
+        image
       }
       orders {
         items {
           name
           price
+          image
         }
       }
   }

@@ -1,25 +1,33 @@
-.wishlist-page-container {
-    text-align: center;
-}
-
-.cetering-div {
-    height: 100vh;
-    width: 100vw;
+.centering-div {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    margin: 50px;
 }
 
 .flex-container {
     border-radius: 25px;
-    background-color: white;
+    background-color: #8466B5;
     padding: 50px;
     text-align: center;
-    width: 600px;
+    width: 800px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .wishlist-item-container {
-    border: 2px solid black;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    background-color: white;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 10px;
+}
+
+span {
+    font-weight: 600;
+}
+
+img {
     margin: 10px;
 }

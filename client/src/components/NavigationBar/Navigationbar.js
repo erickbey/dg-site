@@ -23,6 +23,7 @@ function Navigationbar() {
 
   const handleLogout = () => {
     localStorage.setItem("token", null);
+    localStorage.setItem("cart", [])
     window.location.reload()
   }
 

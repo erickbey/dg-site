@@ -20,14 +20,22 @@ function MyOrders() {
   return (
     <div className='orders-page-container'>
       <Navigationbar />
-        <h2>My Orders</h2>
-
+        
         <div className='centering-div'>
           <div className='flex-container'>
+            <h2>My Orders</h2>
             { userOrders.map((order, index) => 
                 <div className='order-container'>
                   {order.items.map((item, index) => 
-                    <p>Item: {item.name}  Price: ${item.price}</p>
+                    <div className='each-item-container'>
+                      <img
+                        className="cart-disc-image"
+                        src={require(`../../../images/${item.image}`)}
+                        alt="disc"
+                      />
+                      <p>{item.name}</p> 
+                      <p>${item.price}</p>
+                    </div>
                   )}
                 </div>
           )}
