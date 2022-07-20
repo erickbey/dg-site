@@ -44,10 +44,7 @@ function MyInformation() {
         console.log(error)
       };
       if(data.updateUser.status === 'Success'){
-        setSuccess(true);
-        setTimeout(() => {
-          window.location = '/';
-        }, "1000");     
+        setSuccess(true);    
       };
     }
   }, [data, error])

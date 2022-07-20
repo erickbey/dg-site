@@ -60,9 +60,6 @@ function Cart() {
     if(data){
       if(data.addOrder.status === 'Success'){
         setSuccess(true);
-        setTimeout(() => {
-          window.location = '/';
-        }, "1000");     
       };
     }
   }, [data])

@@ -34,10 +34,7 @@ function ChangePassword() {
         console.log(error)
       }
       if(data.changePassword.status === 'Success'){
-        setSuccess(true);
-        setTimeout(() => {
-          window.location = '/';
-        }, "1000");     
+        setSuccess(true);    
       };
     }
   }, [data, error])

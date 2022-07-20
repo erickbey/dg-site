@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './SuccessMessage.css';
 
 function SuccessMessage({ message }) {
   return (
-    <div className='success-message-container' style={{backgroundColor:"green", fontWeight:600, position:"absolute", top:300}}>
+    <div className='success-message-container' style={{position:"absolute", top:300}}>
         <h2>{message}</h2>
     </div>
   )
