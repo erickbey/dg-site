@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navigationbar from '../../../components/NavigationBar/Navigationbar';
 import { GET_USER } from '../../../queries/UserQueries';
 import './MyWishlist.css';
@@ -24,6 +25,7 @@ function MyWishlist() {
           <div className='flex-container'>
             <h2>My Wishlist</h2>
             { userWishlist.map((item, index) => 
+            <Link to={'/product-detail/:id'} state={{disc: item}} style={{  color: 'inherit', textDecoration: 'inherit'}}>
               <div className='wishlist-item-container'>
                 <img
                   className="cart-disc-image"
@@ -33,6 +35,7 @@ function MyWishlist() {
                 <p><span>{item.name}</span></p>
                 <p><span>${item.price}</span></p>
               </div>
+              </Link>
             )}
           </div>
       </div>
