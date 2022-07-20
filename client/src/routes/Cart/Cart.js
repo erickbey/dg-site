@@ -74,7 +74,8 @@ function Cart() {
         <div className='all-items-container'>
           { cart.map((item, index) => 
             <div className='item-container'>
-              <h2 className='disc-info'>{item.disc.name}    ${item.disc.price}</h2>
+              <h2 className='disc-info'>{item.disc.name}</h2>
+              <h2>${item.disc.price}</h2>
               <img
                   className="cart-disc-image"
                   src={require(`../../images/${item.disc.image}`)}
