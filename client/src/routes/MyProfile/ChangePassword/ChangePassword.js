@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import Navigationbar from '../../../components/NavigationBar/Navigationbar';
+import SuccessMessage from '../../../components/SuccessMessage/SuccessMessage';
 import { CHANGE_PASSWORD_MUTATION } from '../../../queries/UserQueries';
 import './ChangePassword.css';
 
@@ -9,6 +10,7 @@ function ChangePassword() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false)
 
   const [changePassword, { data }] = useMutation(CHANGE_PASSWORD_MUTATION, {
     onCompleted: (data) => console.log(data)
@@ -31,6 +33,12 @@ function ChangePassword() {
         setError(data.changePassword.userErrors[0].message)
         console.log(error)
       }
+      if(data.changePassword.status === 'Success'){
+        setSuccess(true);
+        setTimeout(() => {
+          window.location = '/';
+        }, "1000");     
+      };
     }
   }, [data, error])
 
@@ -40,6 +48,7 @@ function ChangePassword() {
       <Navigationbar />
 
       <div className='centering-div'>
+      {success ? <SuccessMessage message={'Password Updated Successfully'} /> : null}
         <div className='change-password-container'>
             <h2>Change Your Password</h2>
             <form onSubmit={handleSubmit}>

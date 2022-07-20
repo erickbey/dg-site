@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import Navigationbar from '../../../components/NavigationBar/Navigationbar';
+import SuccessMessage from '../../../components/SuccessMessage/SuccessMessage';
 import { CHANGE_USER_INFO_MUTATION, GET_USER } from '../../../queries/UserQueries';
 import './MyInformation.css';
 
@@ -9,6 +10,7 @@ function MyInformation() {
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false)
 
   // useQuery(GET_USER, {
   //   onCompleted: (data) => {
@@ -40,7 +42,13 @@ function MyInformation() {
       if(data.updateUser.userErrors.length) {
         setError(data.updateUser.userErrors[0].message)
         console.log(error)
-      }
+      };
+      if(data.updateUser.status === 'Success'){
+        setSuccess(true);
+        setTimeout(() => {
+          window.location = '/';
+        }, "1000");     
+      };
     }
   }, [data, error])
 
@@ -50,6 +58,7 @@ function MyInformation() {
       <Navigationbar />
 
       <div className='centering-div'>
+      {success ? <SuccessMessage message={'User Info Updated Successfully'} /> : null}
         <div className='change-userInfo-container'>
             <h2>Change Your Personal Information</h2>
             <form onSubmit={handleSubmit}>

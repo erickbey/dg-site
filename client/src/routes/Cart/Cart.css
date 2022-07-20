@@ -1,3 +1,7 @@
+.cart-page-container {
+    text-align: center;
+}
+
 .centering-div {
     display: flex;
     justify-content: center;

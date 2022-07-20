@@ -44,7 +44,7 @@ function Register() {
         }, "1000");     
       };
     }
-  }, [data])
+  }, [data, error])
 
   return (
     <div>
@@ -52,7 +52,7 @@ function Register() {
 
       <div className='centering-container'>
         <div className='register-container'>
-          {success ? <SuccessMessage /> : null}
+          {success ? <SuccessMessage message={'Account added successfully'} /> : null}
             <h2>Create your account</h2>
             <form onSubmit={handleSubmit}>
             {error && <p style={{color:"red", fontWeight:600}}>{error}</p>}
