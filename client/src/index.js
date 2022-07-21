@@ -47,15 +47,15 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/products" element={<ProductPage />} />
-        <Route path="/product-detail/:id" element={<DetailedProduct />} />
+        <Route path="/products/:id" element={<DetailedProduct />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/my-profile" element={<MyInformation />} />
-        <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/my-reviews" element={<MyReviews />} />
-        <Route path="/my-orders" element={<MyOrders />} />
-        <Route path="/my-wishlist" element={<MyWishlist />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/change-password/:id" element={<ChangePassword />} />
+        <Route path="/my-reviews/:id" element={<MyReviews />} />
+        <Route path="/my-orders/:id" element={<MyOrders />} />
+        <Route path="/my-wishlist/:id" element={<MyWishlist />} />
+        <Route path="/cart/:id" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-disc" element={<AddDisc />} />
       </Routes>

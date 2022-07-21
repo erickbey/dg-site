@@ -49,10 +49,10 @@ function Navigationbar() {
               {userName ? <div className='profile-settings-container'>
                             <DropdownButton id="dropdown-basic-button" title={userName}>
                                 <Dropdown.Item href="/my-profile"><Nav.Link href="/my-profile">User Info</Nav.Link></Dropdown.Item>
-                                <Dropdown.Item href="/change-password"><Nav.Link href="/change-password">Change Password</Nav.Link></Dropdown.Item>
-                                <Dropdown.Item href="/change-password"><Nav.Link href="/my-reviews">My Reviews</Nav.Link></Dropdown.Item>
-                                <Dropdown.Item href="/change-password"><Nav.Link href="/my-orders">My Orders</Nav.Link></Dropdown.Item>
-                                <Dropdown.Item href="/change-password"><Nav.Link href="/my-wishlist">My Wishlist</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href={`/change-password/${userName}`}>Change Password</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href={`/my-reviews/${userName}`}>My Reviews</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href={`/my-orders/${userName}`}>My Orders</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href={`/my-wishlist/${userName}`}>My Wishlist</Nav.Link></Dropdown.Item>
                             </DropdownButton>
                               <p className='header-text' variant="secondary" onClick={handleLogout}>Logout</p>
                             <Nav.Link href="/cart">
