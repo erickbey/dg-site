@@ -9,4 +9,4 @@ function SuccessMessage({ message }) {
   )
 }
 
-export default SuccessMessage
+export default SuccessMessage;

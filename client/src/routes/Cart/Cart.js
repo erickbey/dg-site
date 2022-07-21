@@ -9,6 +9,7 @@ import SuccessMessage from '../../components/SuccessMessage/SuccessMessage';
 function Cart() {
   const items = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart, setCart] = useState(items);
+  const [messageShow, setMessageShow] = useState(false)
 
   const [success, setSuccess] = useState(false)
 
@@ -17,7 +18,13 @@ function Cart() {
     JSON.parse(localStorage.getItem("cart") || "[]")
   }, [cart])
 
+  const handleMessageShow = () => {
+    setMessageShow(true)
   
+    setTimeout(() => {
+       setMessageShow(false)
+    }, 2000)
+  }
 
   const handleRemoveFromCart = (itemId) => {
     console.log("Item removed from cart")
@@ -27,8 +34,11 @@ function Cart() {
     if (index > -1) { 
       cart.splice(index, 1)
     }
-    setCart(cart)
+
+    handleMessageShow();
+
     localStorage.setItem("cart", JSON.stringify(cart))
+    setCart(cart)
   }
 
   let cartTotal = 0;
@@ -70,6 +80,11 @@ function Cart() {
 
       <h2>Items in Cart</h2>
       <div className='centering-div'>
+
+      {messageShow
+              ? <SuccessMessage message={'Item removed to cart'} />
+              : <div></div>
+            }
       {success ? <SuccessMessage message={'Order executed successfully'} /> : null}
         <div className='all-items-container'>
           { cart.map((item, index) => 

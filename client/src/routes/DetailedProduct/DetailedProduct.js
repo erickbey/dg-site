@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { ADD_REVIEW_MUTATION, GET_DISC_REVIEWS } from '../../queries/ReviewQueries';
 import { ADD_TO_WISHLIST_MUTATION, DELETE_FROM_WISHLIST_MUTATION, GET_USER } from '../../queries/UserQueries';
 import { GET_ONE_DISC } from '../../queries/DiscQueries';
+import SuccessMessage from '../../components/SuccessMessage/SuccessMessage';
 import ('./DetailedProduct.css');
 
 
@@ -21,13 +22,15 @@ function DetailedProduct() {
   const [userId, setUserId] = useState("");
   const [userWishlist, setUserWishlist] = useState([]);
   const [reviewsList, setReviewsList] = useState([]);
+  const [cartMessageShow, setCartMessageShow] = useState(false);
+
   
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart, setCart] = useState(cartFromLocalStorage);
   
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart))
-  }, [cart])
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart, userWishlist])
 
   const location = useLocation();
   const state = location.state.disc.id
@@ -40,11 +43,21 @@ function DetailedProduct() {
     })
     
   const [addToWishlist] = useMutation(ADD_TO_WISHLIST_MUTATION, {
-    onCompleted: (data) => console.log(data)
+    onCompleted: (data) => {
+      console.log(data)
+      if (data.addToWishlist.status === 'Success') {
+        window.location.reload();
+      }
+    }
+      
   })
 
   const [deleteFromWishlist] = useMutation(DELETE_FROM_WISHLIST_MUTATION, {
-    onCompleted: (data) => console.log(data)
+    onCompleted: (data) => {
+      console.log(data)
+      if (data.deleteFromWishlist.status === 'Success') {
+        setUserWishlist([])
+      }}
   })
 
   const handleAddToWishlist = () => {
@@ -63,9 +76,19 @@ function DetailedProduct() {
     })
   }
 
+  const handleCartMessageShow = () => {
+    setCartMessageShow(true)
+  
+    setTimeout(() => {
+       setCartMessageShow(false)
+    }, 2000)
+  }
+
   const handleAddToCart = () => {
     console.log("Item added to cart")
     setCart([...cart, data])
+    
+    handleCartMessageShow();
   }
 
   const handleReviewSubmit = () => {    
@@ -110,7 +133,7 @@ function DetailedProduct() {
       if (userWishlist.some(item => item.id === state)) {
         return true
       } else {
-        return false 
+        return false
       }
     }
 
@@ -137,6 +160,7 @@ function DetailedProduct() {
               Speed:{data.disc.speed} Glide:{data.disc.glide} Turn:
               {data.disc.turn} Fade:{data.disc.fade}{" "}
             </p>
+            
             <div className='buttons-container'>
               <button type="submit" className='cart-button' onClick={handleAddToCart}>Add to Cart</button>
               {renderWishlistButton() 
@@ -144,8 +168,13 @@ function DetailedProduct() {
                 : <button type="submit" className='wishlist-button' onClick={handleAddToWishlist}>Add to Wishlist</button>
               }
           </div>
+              
           </div>
           
+          {cartMessageShow
+            ? <SuccessMessage message={'Item added to cart'} />
+            : <div></div>
+          }
         </div>
 
         <div className="reviews-container">
