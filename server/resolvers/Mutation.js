@@ -270,7 +270,7 @@ exports.Mutation = {
         };
     },
     updateUser : async(parent, { input }, context) => {
-        const { name, userName, email } = input;
+        let { name, userName, email } = input;
 
         if(!context.userId) {
             return {
@@ -278,12 +278,14 @@ exports.Mutation = {
                 status: "failed",
             };
         }
+
+        if(!name) name = undefined;
+        if(!userName) userName = undefined;
+        if(!email) email = undefined;
         
-        await User.findByIdAndUpdate(context.userId, {
-            name,
-            userName,
-            email,
-            new : true,
+        await User.findByIdAndUpdate(context.userId, {name, userName, email}, {
+            upsert: true,
+            new: true,
         })
 
         return {

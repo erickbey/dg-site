@@ -50,7 +50,7 @@ root.render(
         <Route path="/products/:id" element={<DetailedProduct />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/my-profile" element={<MyInformation />} />
+        <Route path="/user-info/:id" element={<MyInformation />} />
         <Route path="/change-password/:id" element={<ChangePassword />} />
         <Route path="/my-reviews/:id" element={<MyReviews />} />
         <Route path="/my-orders/:id" element={<MyOrders />} />

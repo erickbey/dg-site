@@ -16,7 +16,7 @@ function Navigationbar({ cartLength }) {
 
   let displayLength;
   
-  if(cartLength < 0) {
+  if(cartLength < 0 ) {
       displayLength = cart.length;
     } else {
       displayLength = cartLength;
@@ -63,7 +63,7 @@ function Navigationbar({ cartLength }) {
             <Nav>
               {userName ? <div className='profile-settings-container'>
                             <DropdownButton id="dropdown-basic-button" title={userName}>
-                                <Dropdown.Item href="/my-profile"><Nav.Link href="/my-profile">User Info</Nav.Link></Dropdown.Item>
+                                <Dropdown.Item href="/change-password"><Nav.Link href={`/user-info/${userName}`}>User Info</Nav.Link></Dropdown.Item>
                                 <Dropdown.Item href="/change-password"><Nav.Link href={`/change-password/${userName}`}>Change Password</Nav.Link></Dropdown.Item>
                                 <Dropdown.Item href="/change-password"><Nav.Link href={`/my-reviews/${userName}`}>My Reviews</Nav.Link></Dropdown.Item>
                                 <Dropdown.Item href="/change-password"><Nav.Link href={`/my-orders/${userName}`}>My Orders</Nav.Link></Dropdown.Item>
