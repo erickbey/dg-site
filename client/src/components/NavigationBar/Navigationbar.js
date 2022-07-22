@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Navbar, Container, Nav} from 'react-bootstrap';
 import { GET_USER } from '../../queries/UserQueries';
 import logo from '../../images/logo(1).png';
@@ -8,8 +8,23 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
-function Navigationbar() {
+function Navigationbar({ cartLength }) {
   const [userName, setUserName] = useState("");
+
+  const items = JSON.parse(localStorage.getItem("cart") || "[]");
+  const [cart, setCart] = useState(items);
+
+  let displayLength;
+  
+  if(!cartLength) {
+      displayLength = cart.length;
+    } else {
+      displayLength = cartLength;
+    }
+
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("cart") || "[]")
+  }, [cart])
 
   useQuery(GET_USER, {
     onCompleted: (data) => {
@@ -58,6 +73,10 @@ function Navigationbar() {
                             <Nav.Link href="/cart">
                               <p className='header-text' variant="secondary">Cart</p>
                             </Nav.Link>
+                            {!displayLength
+                            ? null
+                            : <button className='cart-display-button'>{displayLength}</button>
+                            } 
                           </div>
                           
                           : <div className='profile-settings-container'>

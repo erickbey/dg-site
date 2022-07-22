@@ -140,7 +140,7 @@ function DetailedProduct() {
   if(!loading) {
     return (
       <div>
-        <Navigationbar />
+        <Navigationbar cartLength={cart.length}/>
 
         <div className="content-container">
           <div className="image-container">

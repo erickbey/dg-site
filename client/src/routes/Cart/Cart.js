@@ -76,7 +76,7 @@ function Cart() {
 
   return (
     <div className='cart-page-container'>
-      <Navigationbar />
+      <Navigationbar cartLength={cart.length}/>
 
       <h2>Items in Cart</h2>
       <div className='centering-div'>

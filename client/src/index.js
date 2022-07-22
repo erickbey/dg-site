@@ -55,7 +55,7 @@ root.render(
         <Route path="/my-reviews/:id" element={<MyReviews />} />
         <Route path="/my-orders/:id" element={<MyOrders />} />
         <Route path="/my-wishlist/:id" element={<MyWishlist />} />
-        <Route path="/cart/:id" element={<Cart />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-disc" element={<AddDisc />} />
       </Routes>

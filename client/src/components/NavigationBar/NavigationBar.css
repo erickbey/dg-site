@@ -28,6 +28,24 @@
     margin-bottom: 15px;
 }
 
+.cart-display-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:default;
+    border-radius: 50%;
+    transition-property: background-color,color,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;  
+    text-align: center;
+    font-weight: 700;
+    color: black;
+    background-color: #BCEDF6;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
+}
+
 .logo-image {
     margin-top: auto;
     margin-bottom: auto;
