@@ -1,8 +1,8 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import Navigationbar from '../../../components/NavigationBar/Navigationbar';
 import SuccessMessage from '../../../components/SuccessMessage/SuccessMessage';
-import { CHANGE_USER_INFO_MUTATION, GET_USER } from '../../../queries/UserQueries';
+import { CHANGE_USER_INFO_MUTATION } from '../../../queries/UserQueries';
 import './MyInformation.css';
 
 function MyInformation() {
@@ -11,16 +11,6 @@ function MyInformation() {
   const [userName, setUserName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false)
-
-  // useQuery(GET_USER, {
-  //   onCompleted: (data) => {
-  //     if(data.user !== null) {
-  //       setCurrentUserId(data.user.id);
-  //     } else {
-  //       return null
-  //     }
-  //   }
-  // });
 
   const [updateUser, { data }] = useMutation(CHANGE_USER_INFO_MUTATION, {
     onCompleted: (data) => console.log(data)
