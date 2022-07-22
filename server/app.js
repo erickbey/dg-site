@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
+const rateLimit = require('express-rate-limit');
+const xss = require('xss-clean');
 
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs } = require('./schema/schema');
@@ -46,8 +48,26 @@ async function initServer() {
       return userInfo
     }
   })
+
+  const limiter = rateLimit({
+    max: 100,
+    windowMS: 60 *60 * 1000, 
+    message: 'Too many requests from this IP, please try again in an hour'
+  });
+  app.use('/graphql', limiter);
+
+  app.use(mongoSanitize());
+
+  app.use(xss());
+
   await server.start();
-  server.applyMiddleware({ app })
+
+  server.applyMiddleware({ 
+    app,
+    cors: {
+      origin: 'http://localhost:3000'
+    } 
+  })
   app.use((req, res) => {
     res.send("Server started successfully!")
   })
