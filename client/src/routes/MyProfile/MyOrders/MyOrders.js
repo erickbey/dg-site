@@ -24,7 +24,9 @@ function MyOrders() {
         <div className='centering-div'>
           <div className='flex-container'>
             <h2>My Orders</h2>
-            { userOrders.map((order, index) => 
+            {!userOrders
+            ? <p>You have not made any orders yet</p>
+            : userOrders.map((order, index) => 
                 <div className='order-container'>
                   {order.items.map((item, index) => 
                     <div className='each-item-container'>
@@ -39,6 +41,7 @@ function MyOrders() {
                   )}
                 </div>
           )}
+            
           </div>
         </div>
     </div>
