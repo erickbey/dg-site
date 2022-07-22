@@ -16,7 +16,7 @@ function Navigationbar({ cartLength }) {
 
   let displayLength;
   
-  if(!cartLength) {
+  if(cartLength < 0) {
       displayLength = cart.length;
     } else {
       displayLength = cartLength;
