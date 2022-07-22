@@ -36,9 +36,9 @@ function Cart() {
     }
 
     handleMessageShow();
-
-    localStorage.setItem("cart", JSON.stringify(cart))
+    
     setCart(cart)
+    localStorage.setItem("cart", JSON.stringify(cart))
   }
 
   let cartTotal = 0;
