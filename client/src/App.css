@@ -15,6 +15,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-bottom: 125px;
 }
 
 .bg-pic {
@@ -61,11 +62,6 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .footer-placement {
-      width: 100%;
-      position: relative;
-  }
-
   .bg-pic {
     width: 95%;
     object-position: 80% 50%;
