@@ -110,6 +110,7 @@
 
     .cart-button, .wishlist-button {
         margin: 5px;
+        font-size: .6rem;
     }
 
     .reviews-list {

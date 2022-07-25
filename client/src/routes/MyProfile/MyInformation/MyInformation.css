@@ -63,16 +63,3 @@
     background-color: #a686da;
 }
 
-@media only screen and (max-width: 600px) {
-    .change-userInfo-container {
-        border-radius: 25px;
-        background-color: white;
-        padding: 25px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        width: 300px;
-    }
-  }

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .App {
   min-height: 100vh;
   width: 100%;
@@ -17,7 +23,6 @@
   height: 700px;
   object-fit: cover;
   object-position: 100% 15%;
-  /* filter: grayscale(100%); */
 }
 
 .shop-button-container {
@@ -59,5 +64,10 @@
   .footer-placement {
       width: 100%;
       position: relative;
+  }
+
+  .bg-pic {
+    width: 95%;
+    object-position: 80% 50%;
   }
 }

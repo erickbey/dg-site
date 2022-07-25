@@ -31,3 +31,21 @@ span {
 img {
     margin: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .centering-div{
+        margin: 0;
+    }
+
+    .flex-container {
+        width:350px;
+        padding: 10px;
+        margin: 0;
+        background-color: white;
+        box-shadow: none;
+    }
+
+    .wishlist-item-container {
+        box-shadow: none;
+    }
+  }

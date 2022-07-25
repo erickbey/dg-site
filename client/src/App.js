@@ -3,7 +3,7 @@ import Footer from './components/Footer/Footer';
 import Navigationbar from './components/NavigationBar/Navigationbar';
 import Newsletter from './components/Newsletter/Newsletter';
 import bgpic from './images/ricky-wysocki.jpg';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 
 function App() {
   return (
