@@ -9,7 +9,7 @@
     align-items: space-around;
     transition: all .2s ease-in-out;
     text-align: center;
-    box-shadow: rgba(140, 0, 255, 0.8) 0px 5px 15px;
+    box-shadow: rgba(140, 0, 255, 0.1) 0px 5px 15px;
 }
 
 .product-container:hover {
@@ -71,3 +71,18 @@
     transform: scale(1.04);
     background-color: #a686da;
 }
+
+@media only screen and (max-width: 450px) {
+    .product-container {
+        height: 450px;
+        width: 300px;
+        padding: 5px;
+        box-shadow: rgba(140, 0, 255, 0.3) 0px 5px 15px;
+    }
+
+    .discImage {
+        height: 250px;
+        width: 250px;
+        object-fit: contain;
+    }
+  }

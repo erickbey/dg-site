@@ -16,7 +16,7 @@ function Navigationbar({ cartLength }) {
 
   let displayLength;
   
-  if(cartLength < 0 ) {
+  if(!cartLength) {
       displayLength = cart.length;
     } else {
       displayLength = cartLength;
@@ -43,7 +43,7 @@ function Navigationbar({ cartLength }) {
   }
 
   return (
-    <div>
+    <div className='navigation-container'>
       <Navbar
         className="test"
         collapseOnSelect

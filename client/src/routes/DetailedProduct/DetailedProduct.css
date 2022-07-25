@@ -21,7 +21,6 @@
 
 .disc-info-container {
     text-align: center;
-    margin-left: 25px;
 }
 
 .reviews-container {
@@ -30,6 +29,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .reviews-list {
     text-align: center;
     width: 66%;
@@ -92,3 +92,32 @@
     bottom: 0;
     left: 0;
 }
+
+@media only screen and (max-width: 600px) {
+    .content-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .detailed-disc-image {
+        width: 325px;
+        height: 325px;
+        object-fit: contain;
+    }
+
+    .cart-button, .wishlist-button {
+        margin: 5px;
+    }
+
+    .reviews-list {
+        text-align: center;
+        width: 90%;
+        padding: 5px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+  }
