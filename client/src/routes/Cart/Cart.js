@@ -10,7 +10,6 @@ function Cart() {
   const items = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart, setCart] = useState(items);
   const [messageShow, setMessageShow] = useState(false)
-
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
@@ -70,6 +69,10 @@ function Cart() {
     if(data){
       if(data.addOrder.status === 'Success'){
         setSuccess(true);
+
+        setTimeout(() => {
+          setSuccess(false)
+       }, 4000)
       };
     }
   }, [data])
