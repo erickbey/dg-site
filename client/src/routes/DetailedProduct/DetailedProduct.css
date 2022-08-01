@@ -1,0 +1,124 @@
+.content-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.detailed-disc-image {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+}
+
+.disc-info-container {
+    text-align: center;
+}
+
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-list {
+    text-align: center;
+    width: 66%;
+    border: 1px solid black;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.review-title {
+    font-size: 1.3rem;
+}
+
+.review-button, .cart-button, .wishlist-button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color,color,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 17px 48px;
+    color: #fff;
+    background-color: #8466B5;
+    height: 48px;
+    margin-bottom: 15px;
+}
+
+.review-button:hover {
+    transform: scale(1.04);
+    background-color: #a686da;
+}
+
+.my-modal {
+    height: 475px;
+}
+
+.review-input-textarea {
+    width: 100%;
+    height: 150px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.footer-placement {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .content-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .detailed-disc-image {
+        width: 325px;
+        height: 325px;
+        object-fit: contain;
+    }
+
+    .cart-button, .wishlist-button {
+        margin: 5px;
+        font-size: .6rem;
+    }
+
+    .reviews-list {
+        text-align: center;
+        width: 90%;
+        padding: 5px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+  }

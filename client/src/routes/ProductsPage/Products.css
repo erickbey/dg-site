@@ -1,0 +1,17 @@
+.products-page-container {
+    position: relative;
+}
+
+.products-centering-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products-container {
+    max-width: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

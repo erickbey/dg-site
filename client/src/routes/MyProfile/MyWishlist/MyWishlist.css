@@ -1,0 +1,51 @@
+.centering-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 50px;
+}
+
+.flex-container {
+    border-radius: 25px;
+    background-color: #8466B5;
+    padding: 50px;
+    text-align: center;
+    width: 800px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.wishlist-item-container {
+    font-size: 1.2rem;
+    border-radius: 25px;
+    background-color: white;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 10px;
+}
+
+span {
+    font-weight: 600;
+}
+
+img {
+    margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .centering-div{
+        margin: 0;
+    }
+
+    .flex-container {
+        width:350px;
+        padding: 10px;
+        margin: 0;
+        background-color: white;
+        box-shadow: none;
+    }
+
+    .wishlist-item-container {
+        box-shadow: none;
+    }
+  }

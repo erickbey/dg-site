@@ -1,0 +1,19 @@
+.review-container {
+    font-size: 1.2rem;
+    border-radius: 25px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .review-container {
+        padding: 20px;
+    }
+  }
